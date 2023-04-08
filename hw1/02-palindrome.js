@@ -15,8 +15,10 @@ function handleInput() {
     outputDiv.classList.remove('text-danger');
     outputDiv.innerHTML = '';
   } else {
-    // Code to reverse number sourced from my previous assignment: 
-    // https://github.com/rohan-singh1/student-repo-fullstack/blob/main/hw2/02-reverse.js
+    /**
+     * Code to reverse a number sourced from my previous assignment: 
+     * https://github.com/rohan-singh1/student-repo-fullstack/blob/main/hw2/02-reverse.js
+     */
     let result = 0;
     for (let i = enteredValue; Math.floor(i) > 0; i /= 10) {
       i = Math.floor(i);
