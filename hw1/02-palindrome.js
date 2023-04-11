@@ -1,40 +1,45 @@
 const elem = document.querySelector('input');
 
-elem.addEventListener('input', handleInput);
-
-function handleInput() {
+function displayText(isOk, message) {
   const outputDiv = document.getElementById('output');
-  const enteredValue = document.getElementById('input').value;
-
-  if (enteredValue < 0) {
+  if (isOk) {
+    outputDiv.classList.remove('text-danger');
+    outputDiv.classList.add('text-success');
+  } else {
     outputDiv.classList.remove('text-success');
     outputDiv.classList.add('text-danger');
-    outputDiv.innerHTML = 'Error! Negative number entered!';
+  }
+  outputDiv.innerHTML = message;
+}
+
+function handleInput() {
+  const enteredValue = document.getElementById('input').value;
+
+  /**
+   * Code to check if a value is numeric or not, sourced from here:
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN
+   */
+  if (Number.isNaN(enteredValue)) {
+    displayText(false, 'Error! Non-numeric character(s) entered!');
+  } else if (enteredValue < 0) {
+    displayText(false, 'Error! Negative number entered!');
   } else if (enteredValue === '') {
-    outputDiv.classList.remove('text-success');
-    outputDiv.classList.remove('text-danger');
-    outputDiv.innerHTML = '';
+    displayText(false, '');
   } else {
     /**
-     * Code to reverse a number sourced from my previous assignment: 
-     * https://github.com/rohan-singh1/student-repo-fullstack/blob/main/hw2/02-reverse.js
+     * Code to reverse a string sourced from here:
+     * https://www.freecodecamp.org/news/how-to-reverse-a-string-in-javascript-in-3-different-ways-75e4763c68cb/
      */
-    let result = 0;
-    for (let i = enteredValue; Math.floor(i) > 0; i /= 10) {
-      i = Math.floor(i);
-      l_digit = i % 10;
-      l_digit = Math.floor(l_digit);
-      result = result * 10 + l_digit;
-    }
+    const enteredStringArray = enteredValue.split('');
+    const reversedStringArray = enteredStringArray.reverse();
+    const reversedString = reversedStringArray.join('');
 
-    if (enteredValue == result) {
-      outputDiv.classList.add('text-success');
-      outputDiv.classList.remove('text-danger');
-      outputDiv.innerHTML = 'Yes! This is a palindrome!';
+    if (enteredValue === reversedString) {
+      displayText(true, 'Yes! This is a palindrome!');
     } else {
-      outputDiv.classList.remove('text-success');
-      outputDiv.classList.add('text-danger');
-      outputDiv.innerHTML = 'No. Try again.';
+      displayText(false, 'No. Try again.');
     }
   }
 }
+
+elem.addEventListener('input', handleInput);
