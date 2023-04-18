@@ -8,11 +8,15 @@ function generateRandomColor() {
    * Math floor and random functions sourced from:
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
    */
-  const h = Math.floor(Math.random() * 360).toString();
-  const s = '40%';
-  const v = Math.floor(Math.random() * 50).toString();
-  const a = '70%';
-  const color = `hsl( ${h}, ${s}, ${v}%, ${a})`;
+  const h = Math.floor(Math.random() * 360).toString(); // Hue
+  // Saturation capped at 40% for pastel shades instead of glaring colors
+  const s = '40%'; // Saturation
+  // Value capped at 50% to keep a relatively darker background due to light foreground
+  const v = Math.floor(Math.random() * 50).toString(); // Value
+  // Alpha capped at 70% for a subdued effect
+  const a = '70%'; // Alpha
+
+  const color = `hsl( ${h}, ${s}, ${v}%, ${a})`; // HSV Color
   return color;
 }
 
