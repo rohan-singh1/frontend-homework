@@ -12,7 +12,7 @@ function generateRandomColor() {
   const s = '40%';
   const v = Math.floor(Math.random() * 50).toString();
   const a = '70%';
-  const color = 'hsl(' + h + ', ' + s + ', ' + v + '%, ' + a + ')';
+  const color = `hsl( ${h}, ${s}, ${v}%, ${a})`;
   return color;
 }
 
@@ -22,24 +22,20 @@ function changeBackground() {
    * https://www.w3schools.com/js/js_htmldom_css.asp
    */
   document.getElementsByTagName(
-    'body'
+    'body',
   )[0].style.backgroundColor = generateRandomColor();
 }
 
-/**
- * Window load event code sourced from here:
- * https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
- */
-window.addEventListener('load', (event) => {
+function handlePageLoad() {
   /**
    * Set Interval function sourced from here:
    * https://developer.mozilla.org/en-US/docs/Web/API/setInterval
    */
   intervalId = setInterval(changeBackground, 3000);
   input.disabled = true;
-});
+}
 
-button.addEventListener('click', (event) => {
+function handleButtonClick() {
   isStarted = !isStarted;
   if (isStarted) {
     button.classList.replace('btn-primary', 'btn-danger');
@@ -56,4 +52,11 @@ button.addEventListener('click', (event) => {
      */
     clearInterval(intervalId);
   }
-});
+}
+
+/**
+ * Window load event code sourced from here:
+ * https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
+ */
+window.addEventListener('load', handlePageLoad);
+button.addEventListener('click', handleButtonClick);

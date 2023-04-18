@@ -12,15 +12,14 @@ function handleKeyUp() {
    * https://www.regular-expressions.info/wordboundaries.html
    * https://stackoverflow.com/questions/17885855/use-dynamic-variable-string-as-regex-pattern-in-javascript
    */
-  const wordRegex = new RegExp('\\b' + searchWord + '\\b', 'gi');
-  const innerHtml =
-    '<span style = "background-color: #ffff00">' + searchWord + '</span>';
+  const wordRegex = new RegExp(`\\b${searchWord}\\b`, 'gi');
+  const innerHtml = `<span style = "background-color: #ffff00">${searchWord}</span>`;
   contentHtml = contentHtml.replaceAll(wordRegex, innerHtml);
   document.getElementById('content').innerHTML = contentHtml;
 }
 
 /**
- * Changed the keydown event to keyup because the value returned from 
+ * Changed the keydown event to keyup because the value returned from
  * the input field did not contain the last entered character.
  * Renamed the handler function accordingly.
  */
