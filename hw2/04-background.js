@@ -45,7 +45,8 @@ function handleButtonClick() {
     button.classList.replace('btn-primary', 'btn-danger');
     input.disabled = true;
     button.innerText = 'Stop';
-    intervalId = setInterval(changeBackground, (input.value * 1000).toString());
+    const interval = Number.isNaN(input.value) ? input.value * 1000 : 3000;
+    intervalId = setInterval(changeBackground, interval);
   } else {
     button.classList.replace('btn-danger', 'btn-primary');
     input.disabled = false;
