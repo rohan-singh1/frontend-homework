@@ -13,8 +13,11 @@ function handleKeyUp() {
    * https://stackoverflow.com/questions/17885855/use-dynamic-variable-string-as-regex-pattern-in-javascript
    */
   const wordRegex = new RegExp(`\\b${searchWord}\\b`, 'gi');
-  const innerHtml = `<span style = "background-color: #ffff00">${searchWord}</span>`;
-  contentHtml = contentHtml.replaceAll(wordRegex, innerHtml);
+  /**
+   * Inserting whole match symbol sourced from:
+   * https://javascript.info/regexp-methods
+   */
+  contentHtml = contentHtml.replaceAll(wordRegex, '<span style = "background-color: #ffff00">$&</span>');
   document.getElementById('content').innerHTML = contentHtml;
 }
 
