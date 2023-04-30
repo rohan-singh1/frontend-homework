@@ -3,6 +3,9 @@
   --white: #ffffff;
   --blue: #00425c;
   --cyan: #17a2b8;
+
+  --image-width: 164px;
+  --image-height: 180px;
 }
 
 body {
@@ -16,4 +19,54 @@ h1 {
 .donut-chart {
   border-radius: 0.8rem;
   background-color: var(--white);
+}
+
+/* Exercise 01 Elements */
+
+#main-heading-01 {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.parent-div-01 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+  margin: auto;
+}
+
+#section-01 {
+  margin: auto;
+}
+
+.card-div-01 {
+  padding: 0.5rem;
+  margin: 0.3rem;
+}
+
+.card-div-01:hover {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.dp-01 {
+  width: var(--image-width);
+  height: var(--image-height);
+}
+
+.full-name-01 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-top: 1rem;
+  width: var(--image-width);
+  text-align: center;
+}
+
+.title-01 {
+  font-size: 1rem;
+  font-weight: 800;
+  width: var(--image-width);
+  text-align: center;
 }
