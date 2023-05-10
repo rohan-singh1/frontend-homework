@@ -70,3 +70,15 @@ h1 {
   width: var(--image-width);
   text-align: center;
 }
+
+/* Exercise 02 Elements */
+
+.main-02 {
+  background-color: var(--white);
+  margin: 5rem;
+}
+
+.chart-container-02 {
+  margin-top: 1.2rem;
+  padding-bottom: 1.5rem;
+}

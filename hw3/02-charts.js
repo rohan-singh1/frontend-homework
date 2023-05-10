@@ -1,3 +1,5 @@
+/* global Chart */
+
 const backgroundColors = [
   'rgba(54, 162, 235, 0.8)',
   'rgba(255, 206, 86, 0.8)',
@@ -28,25 +30,70 @@ const borderColors = [
 
 // url for the Thrones API
 const url = 'https://thronesapi.com/api/v2/Characters';
+const houses = [''];
+houses.length = 0;
+const houseQuantityMap = new Map();
+let houseQuantity = [1];
+
+function processCharacter(character) {
+  const house = character.family;
+  let found = false;
+
+  if (houses.length === 0) {
+    houses.push(house);
+    houseQuantityMap.set(house, 1);
+  } else {
+    houses.forEach((element) => {
+      if (element.includes(house) || house.includes(element)) {
+        found = true;
+        houseQuantityMap.set(element, houseQuantityMap.get(element) + 1);
+      }
+    });
+    if (!found) {
+      houses.push(house);
+      houseQuantityMap.set(house, 1);
+    }
+  }
+}
 
 const renderChart = () => {
   const donutChart = document.querySelector('.donut-chart');
-
-  new Chart(donutChart, {
+  const chart = new Chart(donutChart, {
     type: 'doughnut',
     data: {
-      labels: ['label', 'label', 'label', 'label'],
+      labels: houses,
       datasets: [
         {
           label: 'My First Dataset',
-          data: [1, 12, 33, 5],
+          data: houseQuantity,
           backgroundColor: backgroundColors,
           borderColor: borderColors,
           borderWidth: 1,
         },
       ],
     },
+    options: {
+      legend: {
+        display: false,
+      },
+    },
   });
+  chart.update();
 };
 
-renderChart();
+async function getGotData() {
+  const response = await fetch(url);
+  const jsonData = await response.json();
+
+  jsonData.forEach((element) => {
+    processCharacter(element);
+  });
+
+  houses.splice(11, houses.length - 11);
+  houseQuantity = Array.from(houseQuantityMap.values());
+  houseQuantity.splice(11, houseQuantity.length - 11);
+
+  renderChart();
+}
+
+getGotData();
