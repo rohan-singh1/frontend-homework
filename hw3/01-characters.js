@@ -7,7 +7,7 @@ parentDiv.classList.add('parent-div-01');
 const section = document.getElementById('section-01');
 section.appendChild(parentDiv);
 
-function createCharacterCard(character) {
+const createCharacterCard = function createCharacterCard(character) {
   const cardFig = document.createElement('figure');
   cardFig.classList.add('card-figure-01');
 
