@@ -24,9 +24,7 @@ function createCharacterCard(character) {
   title.classList.add('title-01');
   title.innerText = character.title;
 
-  cardDiv.appendChild(image);
-  cardDiv.appendChild(name);
-  cardDiv.appendChild(title);
+  cardDiv.append(image, name, title);
   parentDiv.appendChild(cardDiv);
 }
 
