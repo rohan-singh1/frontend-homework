@@ -8,24 +8,24 @@ const section = document.getElementById('section-01');
 section.appendChild(parentDiv);
 
 function createCharacterCard(character) {
-  const cardDiv = document.createElement('div');
-  cardDiv.classList.add('card-div-01');
+  const cardFig = document.createElement('figure');
+  cardFig.classList.add('card-figure-01');
 
   const image = document.createElement('img');
   image.classList.add('display-picture-01');
   image.setAttribute('src', character.imageUrl);
   image.setAttribute('alt', `Display picture of ${character.fullName}`);
 
-  const name = document.createElement('h2');
+  const name = document.createElement('figcaption');
   name.classList.add('full-name-01');
-  name.innerText = character.fullName;
+  name.textContent = character.fullName;
 
-  const title = document.createElement('h3');
+  const title = document.createElement('figcaption');
   title.classList.add('title-01');
-  title.innerText = character.title;
+  title.textContent = character.title;
 
-  cardDiv.append(image, name, title);
-  parentDiv.appendChild(cardDiv);
+  cardFig.append(image, name, title);
+  parentDiv.appendChild(cardFig);
 }
 
 /*
