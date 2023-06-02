@@ -12,7 +12,7 @@ function createCharacterCard(character) {
   cardDiv.classList.add('card-div-01');
 
   const image = document.createElement('img');
-  image.classList.add('dp-01');
+  image.classList.add('display-picture-01');
   image.setAttribute('src', character.imageUrl);
   image.setAttribute('alt', `Display picture of ${character.fullName}`);
 
